@@ -26,17 +26,25 @@ public:
 class NodeObject : public RefObject
 {
 public:
-  NodeObject() : mNext(0) {}
-  NodeObject* mNext;
+  NodeObject() : mNodeNext(NULL) {}
+
+private:
+  NodeObject* mNodeNext;
 };
 
+class IObjectPool
+{
+public:
+  
+};
 
 template< class T>
-class ObjectPool
+class ObjectPool : public IObjectPool
 {
 public:
 	ObjectPool(int size)
   {
+    Guard g(mListLock);
     for( int i=0; i < size; ++i )
     {
       mFreeList.push_back( new T() );
@@ -45,32 +53,36 @@ public:
 
   T* grab()
   {
+    // avoid locking if not needed
+    // might generate more instances than required
+    // TODO: shared_lock?
     if ( mFreeList.empty() )
     {
       T* t = new T();
-      t->iRef++;
+      ++t->iRef;
       return t;
     }
 
-    mListLock.grab();
+    Guard g(mListLock);
     T* t = mFreeList.front();
-    t->iRef++;
+    ++t->iRef;
     mFreeList.pop_front();
-    mListLock.release();
     return t;
   }
 
   void release(T*t)
   {
-    mListLock.grab();
-    Atomic::decrement((long*)&t->iRef);
-    if( t->iRef <= 0)
+    // is atomic needed here?
+    if (Atomic::decrement((long*)&t->iRef) > 0)
     {
-      t->reset();
-      t->iRef = 0;
-      mFreeList.push_back(t);
+      return;
     }
-    mListLock.release();
+    
+    t->reset();
+    t->iRef = 0;
+
+    Guard g(mListLock);
+    mFreeList.push_back(t);
   }
 	
 private:

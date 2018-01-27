@@ -1,27 +1,36 @@
-/*************************************************************************************
-g3::TaskManager
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#ifndef g3_TaskManager_H_INCLUDED
-#define g3_TaskManager_H_INCLUDED
+#ifndef FlightOS_TaskManager_H_INCLUDED
+#define FlightOS_TaskManager_H_INCLUDED
 
-#include "g3Threading.h"
-#include "g3ThreadSafeQueue.h"
-#include "g3Task.h"
-#include "g3TaskQueue.h"
-#include "g3Singletons.h"
-#include "g3ImUi.h"
+#include "Threading.h"
+#include "ThreadSafeQueue.h"
+#include "Task.h"
+#include "TaskQueue.h"
+#include "ImUi.h"
 
 #include <vector>
 #include <unordered_map>
 
-namespace g3
+namespace FlightOS
 {
-  class TaskManager : public Singleton, public IImUiWindow
+  class TaskManager : public EngineModule
   {
-    g3SingletonDecl;
   public:
     static const int kGeneralTaskQueueId = 0;
     static const int kAssetTaskQueueId = 1;
@@ -31,15 +40,15 @@ namespace g3
 
     TaskManager();
 
-    static TaskManager* getInstance();
-
     int initialize( int iWorkers );
     int update();
     int shutdown();
 
+    
     void add( Task* pTask );
     void push( Task* pTask );
     void pause( Task* pTask, uint64 pauseTime );
+    void wake( Task* pTask );
 
     long getNumWorking() const { return mNumWorking; }
     long getNumPending() const { return mNumPending; }

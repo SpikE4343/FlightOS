@@ -1,11 +1,22 @@
-/*************************************************************************************
-g3::Types
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#ifndef g3_Types_H_INCLUDED
-#define g3_Types_H_INCLUDED
+#ifndef FlightOS_Types_H_INCLUDED
+#define FlightOS_Types_H_INCLUDED
 
 #include "Shiny.h"
 
@@ -20,9 +31,9 @@ typedef          __int64 int64;
 typedef unsigned __int64 uint64;
 typedef unsigned long long uint64;
 
-#define g3_packed( s ) __pragma( pack(push, 1) ) s __pragma( pack(pop) )
+#define FlightOS_packed( s ) __pragma( pack(push, 1) ) s __pragma( pack(pop) )
 
-#define g3_LittleEndian
+#define FlightOS_LittleEndian
 #else
 
 #error unsupported platform
@@ -30,7 +41,7 @@ typedef unsigned long long uint64;
 
 typedef uint32 ASSETID;
 
-namespace g3
+namespace FlightOS
 {
   typedef uint32 TypeId;
 
@@ -52,6 +63,7 @@ namespace g3
   public:
     static TypeId getId()
     {
+      //static TypeId id = 0;
       if (id == 0)
         id = TypeReferenceId::getNext();
 
@@ -61,5 +73,9 @@ namespace g3
   private:
     static TypeId id;
   };
+
+
+  template<class TType>
+  TypeId TypeReference<TType>::id = 0;
 }
 #endif

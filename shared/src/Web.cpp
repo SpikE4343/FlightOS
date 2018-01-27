@@ -1,18 +1,27 @@
-/*************************************************************************************
-g3::Web
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#include "g3Util.h"
-#include "g3System.h"
-#include "g3Web.h"
-#include "g3Log.h"
-#include "g3TaskManager.h"
+#include "Util.h"
+#include "System.h"
+#include "Web.h"
+#include "Log.h"
+#include "TaskManager.h"
 
-
-
-namespace g3 
+namespace FlightOS 
 {
 
   // This function will be called by mongoose on every new request.
@@ -88,6 +97,17 @@ namespace g3
     return handler(request);*/
   }
 
+  void Web::DrawUI(float s)
+  {
+    if (!ImGui::CollapsingHeader("Web"))
+    {
+      return;
+    }
+
+    ImGui::LabelText("Handlers", "%u", mHandlers.size());
+  }
+
+
   // WebRequest
   //
   WebRequest::WebRequest( struct mg_connection* conn ) : 
@@ -115,4 +135,5 @@ namespace g3
 
   }
 
+  
 }

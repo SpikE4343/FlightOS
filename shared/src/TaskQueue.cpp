@@ -1,14 +1,25 @@
-/*************************************************************************************
-g3::TaskQueue
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#include "g3Util.h"
-#include "g3System.h"
-#include "g3TaskQueue.h"
+#include "Util.h"
+#include "System.h"
+#include "TaskQueue.h"
 
-namespace g3
+namespace FlightOS
 {
 
   static int workerId = 0;
@@ -54,8 +65,15 @@ namespace g3
       case Task::eComplete: 
         mTask->finish();
         mTask->mDone = true;
-        mTask->mWorkState = Task::eWsComplete;
-        mOwner->mComplete.push( mTask );
+        if (mTask->completeOnMainThread())
+        {
+          mTask->mWorkState = Task::eWsComplete;
+          mOwner->mComplete.push(mTask);
+        }
+        else
+        {
+          mOwner->completeTask(mTask);
+        }
         break;
 
       case Task::eYield:
@@ -107,10 +125,11 @@ namespace g3
 
   int TaskQueue::update()
   {
+    // SHOULD: process on another thread
     // update paused tasks
     if( !mPaused.empty() )
     {
-      uint64 now = Singletons::get<System>()->getSystemTimeMs();
+      uint64 now = Engine::module<System>()->getSystemTimeMs();
       while(true)
       {
         ScheduledTask front;
@@ -127,6 +146,7 @@ namespace g3
       }
     }
 
+    // SHOULD: process on another thread
     // signal worker threads there is work to do
     if( !mPending.empty() )
       mWorkReady->signal( (int)mPending.size() );
@@ -138,18 +158,23 @@ namespace g3
       Task* pTask = NULL;
       if( mComplete.pop(pTask) && pTask )
       {
-        pTask->complete();
-        pTask->mWorkState = Task::eWsNone;
-
-        if( pTask->deleteWhenComplete() )
-        {
-          delete pTask;
-          pTask = NULL;
-        }
+        completeTask(pTask);
       }
     }
 
     return 1;
+  }
+
+  void TaskQueue::completeTask(Task* pTask)
+  {
+    pTask->complete();
+    pTask->mWorkState = Task::eWsNone;
+
+    if (pTask->deleteWhenComplete())
+    {
+      delete pTask;
+      pTask = NULL;
+    }
   }
 
   void TaskQueue::add( Task* pTask )

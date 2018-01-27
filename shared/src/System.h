@@ -1,22 +1,38 @@
-/*************************************************************************************
-g3::System
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#ifndef g3_System_H_INCLUDED
-#define g3_System_H_INCLUDED
+#ifndef FlightOS_System_H_INCLUDED
+#define FlightOS_System_H_INCLUDED
 
-#include "g3Types.h"
-#include "g3Singletons.h"
-#include "g3ImUi.h"
+#include "Types.h"
+#include "EngineModule.h"
+#include "ImUi.h"
 #include <string>
 
-namespace g3
+namespace FlightOS
 {
-  class System : public Singleton, public IImUiWindow
+  class ISystem
   {
-    g3SingletonDecl;
+  public:
+    virtual uint64 getSystemTimeMs() = 0;
+  };
+
+  class System : public ISystem, public EngineModule
+  {
   public:
     System();
 

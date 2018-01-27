@@ -1,16 +1,33 @@
-#ifndef g3Profiler_h_included 
-#define g3Profiler_h_included
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#include "g3singletons.h"
+#ifndef FlightOS_Profiler_h_included 
+#define FlightOS_Profiler_h_included
 
-namespace g3
+#include "EngineModule.h"
+
+namespace FlightOS
 {
-  class Profiler : public Singleton
+  class Profiler : public EngineModule
   {
-    g3SingletonDecl;
   public:
     Profiler(void);
     ~Profiler(void);
+    void DrawUI(float dt);
   };
 }
 

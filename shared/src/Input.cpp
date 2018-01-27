@@ -15,25 +15,16 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#include "Profiler.h"
-#include "ImUi.h"
+#include "Input.h"
 
 namespace FlightOS
 {
-  Profiler::Profiler(void)
+  Input::Input(void)
   {
   }
 
 
-  Profiler::~Profiler(void)
+  Input::~Input(void)
   {
-  }
-
-  void Profiler::DrawUI(float dt)
-  {
-    if (ImGui::CollapsingHeader("Profiler"))
-    {
-      ImGui::Text("%s", PROFILER_OUTPUT_TREE_STRING());
-    }
   }
 }

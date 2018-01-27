@@ -1,31 +1,46 @@
-/*************************************************************************************
-g3::Application
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#include "g3Util.h"
-#include "g3System.h"
-#include "g3Application.h"
-#include "g3Log.h"
-#include "g3TaskManager.h"
-#include "g3Singletons.h"
 
-namespace g3
+#include "Util.h"
+#include "System.h"
+#include "Application.h"
+#include "Log.h"
+#include "TaskManager.h"
+#include "ObjectPoolManager.h"
+
+namespace FlightOS
 {
-  g3SingletonDef(Application);
   static std::string skDefaultConfig = "{ \"workerthreads\":4 }";
 
   Application::Application()
   {
+
   }
 
   int Application::initialize(int argc, char* argv[])
   {
-    Singletons::create<System>();
-    Singletons::create<TaskManager>();
+    Engine::instance().addModule<Application>(this);
 
-    if( Singletons::get<System>()->initialize() != 1 )
+    engine()->createModule<ObjectPoolManager>();
+    engine()->createModule<System>();
+    engine()->createModule<TaskManager>();
+
+    if(engine()->getModule<System>()->initialize() != 1 )
     {
       Log::info( "Failed to initialize system");
       return 0;
@@ -50,7 +65,7 @@ namespace g3
       ++arg;
     }
 
-    Singletons::get<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
+    Engine::module<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
 
     return 1;
   }
@@ -65,10 +80,10 @@ namespace g3
 
     for(;;)
     {
-      if( Singletons::get<System>()->update() != 1 )
+      if(engine()->getModule<System>()->update() != 1 )
         break;
 
-      Singletons::get<TaskManager>()->update();
+      engine()->getModule<TaskManager>()->update();
 
       if( update() != 1 )
         break;
@@ -86,11 +101,8 @@ namespace g3
 
   int Application::shutdown()
   {
-    Singletons::get<System>()->shutdown();
-
-    Singletons::reset();
+    engine()->removeAllModules();
 
     return 1;
   }
-
 }

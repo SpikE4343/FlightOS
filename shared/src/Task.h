@@ -1,16 +1,27 @@
-/*************************************************************************************
-  g3::Task
-  Copyright (c) 2013 John Rohrssen
-  Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#ifndef g3_Task_H_INCLUDED
-#define g3_Task_H_INCLUDED
+#ifndef FlightOS_Task_H_INCLUDED
+#define FlightOS_Task_H_INCLUDED
 
-#include "g3Types.h"
-#include "g3Util.h"
+#include "Types.h"
+#include "Util.h"
 
-namespace g3
+namespace FlightOS
 {
 class Task
 {
@@ -57,9 +68,9 @@ public:
   virtual int complete(){return 1;}
   TaskEvent Complete;
 
-  void wake();
   bool isDone() const { return mDone; }
 	bool deleteWhenComplete() const { return mDeleteWhenComplete; }
+  virtual bool completeOnMainThread() const { return true; }
 
 	uint64 getPauseMs() const { return mPauseMs; }
 	int getPriority() const { return mPriority; }

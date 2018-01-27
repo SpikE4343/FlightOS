@@ -14,26 +14,44 @@
 // You should have received a copy of the GNU General Public License
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
+#ifndef g3Engine_h_INCLUDED
+#define g3Engine_h_INCLUDED
 
-#include "Profiler.h"
-#include "ImUi.h"
+#include <memory>
+
+#include "Types.h"
+#include "ModuleManager.h"
 
 namespace FlightOS
 {
-  Profiler::Profiler(void)
-  {
-  }
 
+class Engine :
+  public ModuleManager<Engine>
+{
+public:
+  
+  virtual ~Engine();
 
-  Profiler::~Profiler(void)
+  static Engine& instance() 
   {
-  }
-
-  void Profiler::DrawUI(float dt)
-  {
-    if (ImGui::CollapsingHeader("Profiler"))
+    if (mInstance == NULL)
     {
-      ImGui::Text("%s", PROFILER_OUTPUT_TREE_STRING());
+      mInstance = new Engine();
     }
+    return *mInstance; 
   }
-}
+
+  template <typename TModuleType>
+  static TModuleType* module() 
+  {
+    return instance().getModule<TModuleType>();
+  }
+
+private:
+  static Engine* mInstance;
+};
+
+} // g3
+
+#endif
+
