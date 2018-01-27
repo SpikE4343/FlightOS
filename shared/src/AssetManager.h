@@ -1,25 +1,34 @@
-/*************************************************************************************
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-g3::Asset
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
+#ifndef FlightOS_AssetManager_H_INCLUDED
+#define FlightOS_AssetManager_H_INCLUDED
 
-*************************************************************************************/
-
-#ifndef g3_AssetManager_H_INCLUDED
-#define g3_AssetManager_H_INCLUDED
-
-#include "g3ObjectPool.h"
-#include "g3Asset.h"
-#include "g3AssetTypes.h"
-#include "g3Threading.h"
-#include "g3EngineModule.h"
-#include "g3IAssetManager.h"
+#include "ObjectPool.h"
+#include "Asset.h"
+#include "AssetTypes.h"
+#include "Threading.h"
+#include "EngineModule.h"
+#include "IAssetManager.h"
 
 #include <map>
 #include <unordered_map>
 
-namespace g3
+namespace FlightOS
 {
   class MemoryBuffer;
   class Asset;

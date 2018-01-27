@@ -1,19 +1,31 @@
-/*************************************************************************************
-g3::Asset
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#include "g3Util.h"
-#include "g3System.h"
-#include "g3AssetManager.h"
-#include "g3Log.h"
-#include "g3ObjectPoolManager.h"
-#include "g3TaskManager.h"
-#include "g3MemoryBuffer.h"
-#include "g3Json.h"
 
-namespace g3
+#include "Util.h"
+#include "System.h"
+#include "AssetManager.h"
+#include "Log.h"
+#include "ObjectPoolManager.h"
+#include "TaskManager.h"
+#include "MemoryBuffer.h"
+#include "Json.h"
+
+namespace FlightOS
 {
   AssetManager::AssetTypeMap AssetManager::sAssetTypeMap;
 

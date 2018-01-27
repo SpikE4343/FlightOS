@@ -1,24 +1,34 @@
-/*************************************************************************************
-g3::EngineModule
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
-
-#ifndef g3ObjectPoolManager_h_INCLUDED
-#define g3ObjectPoolManager_h_INCLUDED
+#ifndef FlightOS_ObjectPoolManager_h_INCLUDED
+#define FlightOS_ObjectPoolManager_h_INCLUDED
 
 #include <memory>
 #include <shared_mutex>
 
 
-#include "g3Types.h"
-#include "g3Threading.h"
-#include "g3EngineModule.h"
-#include "g3ObjectPool.h"
-#include "g3ImUiWindow.h"
+#include "Types.h"
+#include "Threading.h"
+#include "EngineModule.h"
+#include "ObjectPool.h"
+#include "ImUiWindow.h"
 
-namespace g3
+namespace FlightOS
 {
 
   class IImuUiWindow;

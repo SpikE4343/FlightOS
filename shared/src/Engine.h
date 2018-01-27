@@ -14,8 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
-#ifndef g3Engine_h_INCLUDED
-#define g3Engine_h_INCLUDED
+
+#ifndef Engine_h_INCLUDED
+#define Engine_h_INCLUDED
 
 #include <memory>
 

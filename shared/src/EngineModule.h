@@ -1,21 +1,31 @@
-/*************************************************************************************
-g3::EngineModule
- 
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
 #ifndef g3EngineModule_h_INCLUDED
 #define g3EngineModule_h_INCLUDED
 
 #include <memory>
 
-#include "g3Engine.h"
-#include "g3ModuleManager.h"
-#include "g3ImUiWindow.h"
-#include "g3Task.h"
+#include "Engine.h"
+#include "ModuleManager.h"
+#include "ImUiWindow.h"
+#include "Task.h"
 
-namespace g3
+namespace FlightOS
 {
 
  class IImuUiWindow;

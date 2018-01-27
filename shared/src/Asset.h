@@ -1,21 +1,32 @@
-/*************************************************************************************
-g3::Asset
-Copyright (c) 2013 John Rohrssen
-Email: johnrohrssen@gmail.com
-*************************************************************************************/
+//=====================================================================
+// This file is part of FlightOS.
+//
+// FlightOS is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// FlightOS is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
+//=====================================================================
 
-#ifndef g3_Asset_H_INCLUDED
-#define g3_Asset_H_INCLUDED
+#ifndef FlightOS_Asset_H_INCLUDED
+#define FlightOS_Asset_H_INCLUDED
 
-#include "g3Util.h"
-#include "g3Math.h"
-#include "g3Task.h"
-#include "g3TaskManager.h"
-#include "g3AssetManager.h"
-#include "g3AssetTypes.h"
-#include "g3MemoryBuffer.h"
+#include "Util.h"
+#include "Math.h"
+#include "Task.h"
+#include "TaskManager.h"
+#include "AssetManager.h"
+#include "AssetTypes.h"
+#include "MemoryBuffer.h"
 
-namespace g3
+namespace FlightOS
 {
   class MemoryBuffer;
   class AssetManager;
@@ -24,7 +35,7 @@ namespace g3
   class AssetData
   {
   public:
-    g3_packed( struct Header
+    FlightOS_packed( struct Header
     {
       Header();
 
@@ -43,7 +54,7 @@ namespace g3
       uint32 mNumAssetRefs;
     });
 
-    g3_packed( struct AssetRef
+    FlightOS_packed( struct AssetRef
     {
       uint32 mAssetId;
     });
