@@ -15,44 +15,42 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#ifndef Engine_h_INCLUDED
-#define Engine_h_INCLUDED
+#ifndef FlightOS_Hardware_H_INCLUDED
+#define FlightOS_Hardware_H_INCLUDED
 
-#include <memory>
-
-#include "Types.h"
+#include "Config.h"
 #include "ModuleManager.h"
+#include "SystemModule.h"
 
 namespace FlightOS
 {
-
-class Engine :
-  public ModuleManager<Engine>
-{
-public:
-  
-  virtual ~Engine();
-
-  static Engine& instance() 
+  class Hardware 
+    : public SystemModule
+    , public ModuleManager<Hardware>
   {
-    if (mInstance == NULL)
-    {
-      mInstance = new Engine();
-    }
-    return *mInstance; 
-  }
+  public:
+    Hardware();
 
-  template <typename TModuleType>
-  static TModuleType* module() 
-  {
-    return instance().getModule<TModuleType>();
-  }
+    /// Setup Hardware state
+    virtual int initialize(int argc, char* argv[]);
 
-private:
-  static Engine* mInstance;
-};
+    /// Begin Hardware logic
+    int run(int argc, char* argv[]);
 
-} // g3
+    /// Per-frame method to progress Hardware logic
+    virtual int update();
+
+    /// Stop all Hardware logic and clean up resources
+    virtual int shutdown();
+
+    /// 
+    const Config& getConfig() const { return mConfig; }
+
+  protected:
+    Config mConfig;
+  };
+
+}
+
 
 #endif
-

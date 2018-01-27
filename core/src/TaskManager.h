@@ -29,7 +29,7 @@
 
 namespace FlightOS
 {
-  class TaskManager : public EngineModule
+  class TaskManager : public SystemModule
   {
   public:
     static const int kGeneralTaskQueueId = 0;

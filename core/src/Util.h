@@ -176,9 +176,9 @@ namespace FlightOS
         Callback& cb = it->second;
         ++it;
 
-        auto task = Engine::module<ObjectPoolManager>->grab<SignalTask>();
+        auto task = System::module<ObjectPoolManager>->grab<SignalTask>();
         task->set(cb, arg);
-        Engine::module<TaskManager>()->add(task);
+        System::module<TaskManager>()->add(task);
       }
     }
   };*/

@@ -16,7 +16,7 @@
 //=====================================================================
 
 #include "Util.h"
-#include "System.h"
+#include "Platform.h"
 #include "TaskManager.h"
 
 namespace FlightOS

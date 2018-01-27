@@ -24,7 +24,7 @@
 
 #include "Types.h"
 #include "Threading.h"
-#include "EngineModule.h"
+#include "SystemModule.h"
 #include "ObjectPool.h"
 #include "ImUiWindow.h"
 
@@ -34,7 +34,7 @@ namespace FlightOS
   class IImuUiWindow;
 
   class ObjectPoolManager
-    : public EngineModule
+    : public SystemModule
   {
   protected:
     

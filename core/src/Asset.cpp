@@ -16,7 +16,7 @@
 //=====================================================================
 
 #include "Util.h"
-#include "System.h"
+#include "Platform.h"
 #include "Asset.h"
 #include "Log.h"
 #include "TaskManager.h"
@@ -85,7 +85,7 @@ namespace FlightOS
       mStatus = eStartLoading;
     }
 
-    Engine::module<TaskManager>()->add( this );
+    System::module<TaskManager>()->add( this );
   }
 
   bool Asset::save(const std::string& path, bool compress)
@@ -110,7 +110,7 @@ namespace FlightOS
     mData->write( buf );
     header.mSize = buf.size();
 
-    Engine::module<System>()->CreateFilePath( path );
+    System::module<Platform>()->CreateFilePath( path );
 
     char file[256];
     _snprintf_s( file, sizeof(file), "%s/%08x.g3a", path.c_str(), mAssetId );
@@ -162,7 +162,7 @@ namespace FlightOS
   bool Asset::loadFromFile()
   {
     mStatus = eDataLoading;
-    std::string fullpath = Engine::module<AssetManager>()->getRoot();
+    std::string fullpath = System::module<AssetManager>()->getRoot();
 
     char file[256];
     _snprintf_s( file, sizeof(file), "%s/%08x.g3a", fullpath.c_str(), mAssetId );

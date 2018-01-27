@@ -18,11 +18,11 @@
 #ifndef FlightOS_Input_h_included
 #define FlightOS_Input_h_included
 
-#include "EngineModule.h"
+#include "SystemModule.h"
 
 namespace FlightOS
 {
-  class Input : public EngineModule
+  class Input : public SystemModule
   {
   public:
     Input(void);

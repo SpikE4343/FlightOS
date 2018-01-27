@@ -46,7 +46,7 @@ public:
     
 };
 
-class Web : public EngineModule
+class Web : public SystemModule
 {
 public:
 

@@ -15,9 +15,19 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#include "System.h"
+
+#include "SystemModule.h"
 
 namespace FlightOS
 {
-  
+
+  SystemModule::SystemModule()
+{
 }
+
+
+  SystemModule::~SystemModule()
+{
+}
+
+} // g3

@@ -15,26 +15,26 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#ifndef FlightOS_System_H_INCLUDED
-#define FlightOS_System_H_INCLUDED
+#ifndef FlightOS_Platform_H_INCLUDED
+#define FlightOS_Platform_H_INCLUDED
 
 #include "Types.h"
-#include "EngineModule.h"
+#include "SystemModule.h"
 #include "ImUi.h"
 #include <string>
 
 namespace FlightOS
 {
-  class ISystem
+  class IPlatform
   {
   public:
     virtual uint64 getSystemTimeMs() = 0;
-  };
+  }
 
-  class System : public ISystem, public EngineModule
+  class Platform : public IPlatform, public SystemModule
   {
   public:
-    System();
+    Platform();
 
     int initialize();
     int update();
@@ -45,7 +45,7 @@ namespace FlightOS
     void* getDeviceContext();
     void* getWindow();
 
-    uint64 getSystemTimeMs();
+    uint64 getPlatformTimeMs();
 
     void CreateFilePath( const std::string& path );
 

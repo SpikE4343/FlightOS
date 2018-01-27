@@ -17,7 +17,7 @@
 
 
 #include "Util.h"
-#include "System.h"
+#include "Platform.h"
 #include "Application.h"
 #include "Log.h"
 #include "TaskManager.h"
@@ -34,15 +34,15 @@ namespace FlightOS
 
   int Application::initialize(int argc, char* argv[])
   {
-    Engine::instance().addModule<Application>(this);
+    System::instance().addModule<Application>(this);
 
-    engine()->createModule<ObjectPoolManager>();
-    engine()->createModule<System>();
-    engine()->createModule<TaskManager>();
+    system()->createModule<ObjectPoolManager>();
+    system()->createModule<Platform>();
+    system()->createModule<TaskManager>();
 
-    if(engine()->getModule<System>()->initialize() != 1 )
+    if(system()->getModule<Platform>()->initialize() != 1 )
     {
-      Log::info( "Failed to initialize system");
+      Log::info( "Failed to initialize platform");
       return 0;
     }
 
@@ -65,7 +65,7 @@ namespace FlightOS
       ++arg;
     }
 
-    Engine::module<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
+    System::module<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
 
     return 1;
   }
@@ -80,10 +80,10 @@ namespace FlightOS
 
     for(;;)
     {
-      if(engine()->getModule<System>()->update() != 1 )
+      if(system()->getModule<Platform>()->update() != 1 )
         break;
 
-      engine()->getModule<TaskManager>()->update();
+      system()->getModule<TaskManager>()->update();
 
       if( update() != 1 )
         break;
@@ -101,7 +101,7 @@ namespace FlightOS
 
   int Application::shutdown()
   {
-    engine()->removeAllModules();
+    system()->removeAllModules();
 
     return 1;
   }

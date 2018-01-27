@@ -22,7 +22,7 @@
 #include "Asset.h"
 #include "AssetTypes.h"
 #include "Threading.h"
-#include "EngineModule.h"
+#include "SystemModule.h"
 #include "IAssetManager.h"
 
 #include <map>
@@ -38,7 +38,7 @@ namespace FlightOS
   class AssetManager 
     : public IAssetManager
     , public Task
-    , public EngineModule
+    , public SystemModule
   {
   private:
     enum State

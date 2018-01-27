@@ -15,40 +15,15 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#ifndef FlightOS_Application_H_INCLUDED
-#define FlightOS_Application_H_INCLUDED
-
-#include "Config.h"
-#include "ModuleManager.h"
-#include "EngineModule.h"
+#include "System.h"
 
 namespace FlightOS
 {
-  class Application : public EngineModule
+  System* System::mInstance = NULL;
+
+  System::~System()
   {
-  public:
-    Application();
 
-    /// Setup application state
-    virtual int initialize(int argc, char* argv[]);
+  }
 
-    /// Begin application logic
-    int run(int argc, char* argv[]);
-
-    /// Per-frame method to progress application logic
-    virtual int update();
-
-    /// Stop all application logic and clean up resources
-    virtual int shutdown();
-
-    /// 
-    const Config& getConfig() const { return mConfig; }
-
-  protected:
-    Config mConfig;
-  };
-
-}
-
-
-#endif
+} // g3

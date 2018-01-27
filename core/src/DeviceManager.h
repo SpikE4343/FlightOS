@@ -15,19 +15,42 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
+#ifndef FlightOS_DeviceManager_H_INCLUDED
+#define FlightOS_DeviceManager_H_INCLUDED
 
-#include "EngineModule.h"
+#include "Config.h"
+#include "ModuleManager.h"
+#include "SystemModule.h"
 
 namespace FlightOS
 {
+  class DeviceManager 
+    : public SystemModule
+    , public ModuleManager<DeviceManager>
+  {
+  public:
+    DeviceManager();
 
-  EngineModule::EngineModule()
-{
+    /// Setup DeviceManager state
+    virtual int initialize(int argc, char* argv[]);
+
+    /// Begin DeviceManager logic
+    int run(int argc, char* argv[]);
+
+    /// Per-frame method to progress DeviceManager logic
+    virtual int update();
+
+    /// Stop all DeviceManager logic and clean up resources
+    virtual int shutdown();
+
+    /// 
+    const Config& getConfig() const { return mConfig; }
+
+  protected:
+    Config mConfig;
+  };
+
 }
 
 
-  EngineModule::~EngineModule()
-{
-}
-
-} // g3
+#endif

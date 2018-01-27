@@ -17,7 +17,7 @@
 
 
 #include "Util.h"
-#include "System.h"
+#include "Platform.h"
 #include "AssetManager.h"
 #include "Log.h"
 #include "ObjectPoolManager.h"
@@ -39,11 +39,11 @@ namespace FlightOS
   {
     mRoot = info.mContentRoot;
 
-    Engine::module<TaskManager>()->createQueue( 
+    System::module<TaskManager>()->createQueue( 
       TaskManager::kAssetTaskQueueId, 
       info.mNumWorkerThreads );
 
-    Engine::module<TaskManager>()->add(this);
+    System::module<TaskManager>()->add(this);
 
     Log::info( "AssetManager initialized" );
     return 1;
@@ -103,7 +103,7 @@ namespace FlightOS
 
     if( it == mAssetMap.end() )
     {
-      asset = Engine::module<ObjectPoolManager>()->grab<Asset>();
+      asset = System::module<ObjectPoolManager>()->grab<Asset>();
       asset->setAssetId( id );
       mAssetMap[ id ] = asset;
     }
@@ -122,7 +122,7 @@ namespace FlightOS
     AssetMap::iterator it = mAssetMap.find( id );
     if( it != mAssetMap.end() )
     {
-      Engine::module<ObjectPoolManager>()->release(it->second);
+      System::module<ObjectPoolManager>()->release(it->second);
       mAssetMap.erase( it );
     }
   }

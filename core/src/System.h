@@ -15,43 +15,41 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#ifndef g3EngineModule_h_INCLUDED
-#define g3EngineModule_h_INCLUDED
+#ifndef System_h_INCLUDED
+#define System_h_INCLUDED
 
 #include <memory>
 
-#include "Engine.h"
+#include "Types.h"
 #include "ModuleManager.h"
-#include "ImUiWindow.h"
-#include "Task.h"
 
 namespace FlightOS
 {
 
- class IImuUiWindow;
-
-class EngineModule 
-  : public Module<Engine>
-  , public IImUiWindow
+class System :
+  public ModuleManager<System>
 {
-protected:
-  /// short hand for modules
-  Engine* engine() { return owner(); }
-
 public:
-
-  virtual void DrawUI(float dt){}
   
+  virtual ~System();
 
-  virtual int moduleUnbind()
+  static System& instance() 
   {
-    Module<Engine>::moduleUnbind();
-    return 0;
+    if (mInstance == NULL)
+    {
+      mInstance = new System();
+    }
+    return *mInstance; 
   }
 
+  template <typename TModuleType>
+  static TModuleType* module() 
+  {
+    return instance().getModule<TModuleType>();
+  }
 
-  EngineModule();
-  virtual ~EngineModule();
+private:
+  static System* mInstance;
 };
 
 } // g3

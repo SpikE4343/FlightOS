@@ -15,15 +15,21 @@
 // along with FlightOS.  If not, see <http://www.gnu.org/licenses/>.
 //=====================================================================
 
-#include "Engine.h"
+#ifndef FlightOS_Profiler_h_included 
+#define FlightOS_Profiler_h_included
+
+#include "SystemModule.h"
 
 namespace FlightOS
 {
-  Engine* Engine::mInstance = NULL;
-
-  Engine::~Engine()
+  class Profiler : public SystemModule
   {
+  public:
+    Profiler(void);
+    ~Profiler(void);
+    void DrawUI(float dt);
+  };
+}
 
-  }
+#endif
 
-} // g3

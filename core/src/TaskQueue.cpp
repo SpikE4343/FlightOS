@@ -16,7 +16,7 @@
 //=====================================================================
 
 #include "Util.h"
-#include "System.h"
+#include "Platform.h"
 #include "TaskQueue.h"
 
 namespace FlightOS
@@ -129,7 +129,7 @@ namespace FlightOS
     // update paused tasks
     if( !mPaused.empty() )
     {
-      uint64 now = Engine::module<System>()->getSystemTimeMs();
+      uint64 now = System::module<Platform>()->getSystemTimeMs();
       while(true)
       {
         ScheduledTask front;
