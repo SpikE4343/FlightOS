@@ -99,12 +99,12 @@ namespace FlightOS
 
   void Web::DrawUI(float s)
   {
-    if (!ImGui::CollapsingHeader("Web"))
+    /*if (!ImGui::CollapsingHeader("Web"))
     {
       return;
     }
 
-    ImGui::LabelText("Handlers", "%u", mHandlers.size());
+    ImGui::LabelText("Handlers", "%u", mHandlers.size());*/
   }
 
 

@@ -1,2 +1,0 @@
-# FlightOS
-FlightOS

@@ -18,7 +18,7 @@
 #ifndef FlightOS_Types_H_INCLUDED
 #define FlightOS_Types_H_INCLUDED
 
-#include "Shiny.h"
+#include "shiny/Shiny.h"
 
 typedef unsigned int   uint32;
 typedef          int   int32;

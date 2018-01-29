@@ -18,7 +18,7 @@
 #ifndef FlightOS_Config_h_included
 #define FlightOS_Config_h_included
 
-#include "Json.h"
+//#include "Json.h"
 
 namespace FlightOS
 {
@@ -28,10 +28,10 @@ namespace FlightOS
 		
 		bool load( const char* filename );
 		bool loadString( const char* jsonStr );
-		const Json::Value& root() const { return mRoot; }
+		//const Json::Value& root() const { return mRoot; }
 
 	protected:
-		Json::Value mRoot;
+		//Json::Value mRoot;
 	};
 }
 

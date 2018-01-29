@@ -117,25 +117,25 @@ namespace FlightOS
 
   void TaskManager::DrawUI(float s )
   {
-    if (ImGui::CollapsingHeader("TaskManager"))
-    {
-      ImGui::LabelText("Working", "%u", mNumWorking);
-      ImGui::LabelText("Pending", "%u", mNumPending);
-      ImGui::LabelText("Queues", "%u", mQueues.size());
+    //if (ImGui::CollapsingHeader("TaskManager"))
+    //{
+    //  ImGui::LabelText("Working", "%u", mNumWorking);
+    //  ImGui::LabelText("Pending", "%u", mNumPending);
+    //  ImGui::LabelText("Queues", "%u", mQueues.size());
 
-      if( ImGui::CollapsingHeader( "Queues" ) )
-      {
-        for( auto it : mQueues )
-        {
-          auto* queue = it.second;
-          ImGui::Text( "[%u]", it.first );
+    //  if( ImGui::CollapsingHeader( "Queues" ) )
+    //  {
+    //    for( auto it : mQueues )
+    //    {
+    //      auto* queue = it.second;
+    //      ImGui::Text( "[%u]", it.first );
 
-          ImGui::LabelText( "Pending", "%u", queue->getNumPending() );
-          ImGui::LabelText( "Working", "%u", queue->getNumWorking() );
-          //ImGui::ProgressFloat( "Working", queue->getNumWorking() / (float)queue->getWorkerCount() );
-        }
-      }
-    }
+    //      ImGui::LabelText( "Pending", "%u", queue->getNumPending() );
+    //      ImGui::LabelText( "Working", "%u", queue->getNumWorking() );
+    //      //ImGui::ProgressFloat( "Working", queue->getNumWorking() / (float)queue->getWorkerCount() );
+    //    }
+    //  }
+    //}
   }
 
 }

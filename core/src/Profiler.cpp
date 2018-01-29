@@ -16,7 +16,7 @@
 //=====================================================================
 
 #include "Profiler.h"
-#include "ImUi.h"
+//#include "ImUi.h"
 
 namespace FlightOS
 {
@@ -31,9 +31,9 @@ namespace FlightOS
 
   void Profiler::DrawUI(float dt)
   {
-    if (ImGui::CollapsingHeader("Profiler"))
+    /*if (ImGui::CollapsingHeader("Profiler"))
     {
       ImGui::Text("%s", PROFILER_OUTPUT_TREE_STRING());
-    }
+    }*/
   }
 }

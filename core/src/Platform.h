@@ -20,7 +20,6 @@
 
 #include "Types.h"
 #include "SystemModule.h"
-#include "ImUi.h"
 #include <string>
 
 namespace FlightOS
@@ -29,7 +28,7 @@ namespace FlightOS
   {
   public:
     virtual uint64 getSystemTimeMs() = 0;
-  }
+  };
 
   class Platform : public IPlatform, public SystemModule
   {

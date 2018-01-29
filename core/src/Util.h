@@ -26,8 +26,8 @@
 #include "Threading.h"
 //#include "ObjectPoolManager.h"
 
-#define g3Assert(x) assert(x)
-#define g3AssetNotNull(x) assert(x != NULL);
+#define fosAssert(x) assert(x)
+#define fosAssertNotNull(x) assert(x != NULL);
 
 namespace FlightOS
 {

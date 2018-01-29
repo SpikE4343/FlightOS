@@ -21,7 +21,7 @@
 #include "Types.h"
 #include "Math.h"
 
-#include "json/json.h"
+#include "jsoncpp/include/json/json.h"
 
 namespace FlightOS
 {
