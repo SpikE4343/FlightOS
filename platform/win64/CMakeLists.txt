@@ -17,7 +17,7 @@ set( win64_sources
 )
 
 
-add_library(win64_platform ${win64_sources} ../core)
+add_library(win64_platform ${win64_sources} ../../core)
 
 target_link_libraries(win64_platform core)
 
