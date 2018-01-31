@@ -25,84 +25,84 @@
 
 namespace FlightOS
 {
-  static std::string skDefaultConfig = "{ \"workerthreads\":4 }";
+  //static std::string skDefaultConfig = "{ \"workerthreads\":4 }";
 
-  Application::Application()
-  {
+  //Application::Application()
+  //{
 
-  }
+  //}
 
-  int Application::initialize(int argc, char* argv[])
-  {
-    System::instance().addModule<Application>(this);
+  //int Application::initialize(int argc, char* argv[])
+  //{
+  //  System::instance().addModule<Application>(this);
 
-    system()->createModule<ObjectPoolManager>();
-    system()->createModule<Platform>();
-    system()->createModule<TaskManager>();
+  //  system()->createModule<ObjectPoolManager>();
+  //  system()->createModule<Platform>();
+  //  system()->createModule<TaskManager>();
 
-    if(system()->getModule<Platform>()->initialize() != 1 )
-    {
-      Log::info( "Failed to initialize platform");
-      return 0;
-    }
+  //  if(system()->getModule<Platform>()->initialize() != 1 )
+  //  {
+  //    Log::info( "Failed to initialize platform");
+  //    return 0;
+  //  }
 
-    mConfig.loadString( skDefaultConfig.c_str() );
+  //  mConfig.loadString( skDefaultConfig.c_str() );
 
-    int arg = 0;
-    while( arg < argc )
-    {
-      char* pArg = argv[arg];
-      char* pValue = (arg < argc-1) ? argv[arg+1] : NULL;
+  //  int arg = 0;
+  //  while( arg < argc )
+  //  {
+  //    char* pArg = argv[arg];
+  //    char* pValue = (arg < argc-1) ? argv[arg+1] : NULL;
 
-      if( strncmp( pArg, "-config", 7 ) == 0 )
-      {
-        if( !mConfig.load( pValue ) )
-        {
-          Log::error( "Unable to load config file: %s", pValue );
-          return 0;
-        }
-      }
-      ++arg;
-    }
+  //    if( strncmp( pArg, "-config", 7 ) == 0 )
+  //    {
+  //      if( !mConfig.load( pValue ) )
+  //      {
+  //        Log::error( "Unable to load config file: %s", pValue );
+  //        return 0;
+  //      }
+  //    }
+  //    ++arg;
+  //  }
 
-    System::module<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
+  //  System::module<TaskManager>()->initialize( 2 /*mConfig.root()["workerthreads"].asInt()*/ );
 
-    return 1;
-  }
+  //  return 1;
+  //}
 
-  int Application::run(int argc, char* argv[])
-  {
-    int ret = initialize(argc, argv);
-    if( ret != 1 )
-    {
-      return ret;
-    }
+  //int Application::run(int argc, char* argv[])
+  //{
+  //  int ret = initialize(argc, argv);
+  //  if( ret != 1 )
+  //  {
+  //    return ret;
+  //  }
 
-    for(;;)
-    {
-      if(system()->getModule<Platform>()->update() != 1 )
-        break;
+  //  for(;;)
+  //  {
+  //    if(system()->getModule<Platform>()->update() != 1 )
+  //      break;
 
-      system()->getModule<TaskManager>()->update();
+  //    system()->getModule<TaskManager>()->update();
 
-      if( update() != 1 )
-        break;
-    }
+  //    if( update() != 1 )
+  //      break;
+  //  }
 
-    shutdown();
+  //  shutdown();
 
-    return 1;
-  }
+  //  return 1;
+  //}
 
-  int Application::update()
-  {
-    return 1;
-  }
+  //int Application::update()
+  //{
+  //  return 1;
+  //}
 
-  int Application::shutdown()
-  {
-    system()->removeAllModules();
+  //int Application::shutdown()
+  //{
+  //  system()->removeAllModules();
 
-    return 1;
-  }
+  //  return 1;
+  //}
 }

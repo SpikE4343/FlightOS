@@ -65,7 +65,7 @@ namespace FlightOS
       ++arg;
     }
 
-    System::module<TaskManager>()->initialize( mConfig.root()["workerthreads"].asInt() );
+    System::module<TaskManager>()->initialize(2);// mConfig.root()["workerthreads"].asInt() );
 
     return 1;
   }

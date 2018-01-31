@@ -130,7 +130,7 @@ namespace FlightOS
   bool AssetManager::loadIndex( const std::string& file )
   {
     Log::info("AssetManager loading index: %s", file.c_str());
-    Guard mapGuard(mAssetMapLock);
+   /* Guard mapGuard(mAssetMapLock);
 
     Json::Value root;
     if( !JSON::LoadFile( file, root ) )
@@ -142,14 +142,14 @@ namespace FlightOS
     {
       ASSETID assetid = (*it).asUInt();
       mFileIndex[ assetid ] = it.key().asCString();
-    }
+    }*/
 
     return true;
   }
 
   void AssetManager::DrawUI(float s)
   {
-    if (!ImGui::CollapsingHeader("Assets"))
+    /*if (!ImGui::CollapsingHeader("Assets"))
     {
       return;
     }
@@ -157,7 +157,7 @@ namespace FlightOS
     ImGui::LabelText("Root", mRoot.c_str());
     ImGui::LabelText("File Index", "%u", mFileIndex.size());
     ImGui::LabelText("Asset Map", "%u", mAssetMap.size());
-    ImGui::LabelText("Asset Type Map Q", "%u", sAssetTypeMap.size());
+    ImGui::LabelText("Asset Type Map Q", "%u", sAssetTypeMap.size());*/
   }
 
 }

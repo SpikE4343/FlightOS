@@ -23,7 +23,7 @@
 #include "AssetTypes.h"
 #include "Threading.h"
 #include "SystemModule.h"
-#include "IAssetManager.h"
+//#include "IAssetManager.h"
 
 #include <map>
 #include <unordered_map>
@@ -36,8 +36,8 @@ namespace FlightOS
   class AssetInstance;
 
   class AssetManager 
-    : public IAssetManager
-    , public Task
+//    : public IAssetManager
+    : public Task
     , public SystemModule
   {
   private:

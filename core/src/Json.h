@@ -21,16 +21,16 @@
 #include "Types.h"
 #include "Math.h"
 
-#include "jsoncpp/include/json/json.h"
+//#include "jsoncpp/include/json/json.h"
 
 namespace FlightOS
 {
 
   namespace JSON
   {
-    bool LoadFile( const std::string& filename, Json::Value& root );
+    /*bool LoadFile( const std::string& filename, Json::Value& root );
     bool SaveToFile( const std::string& filename, const Json::Value& root );
-    bool ElementVector3( Json::Value& root, Vector3& vec );
+    bool ElementVector3( Json::Value& root, Vector3& vec );*/
   }
 
 }

@@ -94,7 +94,7 @@ namespace FlightOS
     template<typename TAddModule>
     void addModule(TAddModule* module)
     {
-      g3Assert(module != NULL);
+      fosAssert(module != NULL);
 
       TypeId id = TypeReference<TAddModule>::getId();
 

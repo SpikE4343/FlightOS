@@ -19,5 +19,53 @@
 
 namespace FlightOS
 {
-  
+  Platform::Platform()
+  {
+
+  }
+
+  int Platform::initialize()
+  {
+    return 0;
+  }
+
+  int Platform::update()
+  {
+    return 0;
+  }
+
+  int Platform::shutdown()
+  {
+    return 0;
+  }
+
+  int Platform::createWindow(int width, int height, const char* title)
+  {
+    return 0;
+  }
+
+  void* Platform::getDeviceContext()
+  {
+    return 0;
+  }
+
+  void* Platform::getWindow()
+  {
+    return nullptr;
+  }
+
+  uint64 Platform::getTimeMs()
+  {
+    return 0L;
+  }
+
+  void Platform::CreateFilePath(const std::string& path)
+  {
+
+  }
+
+  void Platform::DrawUI(float dt)
+  {
+
+  }
 }

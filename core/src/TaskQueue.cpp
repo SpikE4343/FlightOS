@@ -34,7 +34,7 @@ namespace FlightOS
   int TaskQueue::WorkerThread::run()
   {
 
-#ifdef DEBUG
+#ifdef _DEBUG
     char temp[256];
     sprintf_s(temp, "%u: worker: %d", mOwner->getId(), mId );
     setName( temp );
@@ -129,7 +129,7 @@ namespace FlightOS
     // update paused tasks
     if( !mPaused.empty() )
     {
-      uint64 now = System::module<Platform>()->getSystemTimeMs();
+      uint64 now = System::module<Platform>()->getTimeMs();
       while(true)
       {
         ScheduledTask front;

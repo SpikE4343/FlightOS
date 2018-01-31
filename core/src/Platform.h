@@ -27,10 +27,10 @@ namespace FlightOS
   class IPlatform
   {
   public:
-    virtual uint64 getSystemTimeMs() = 0;
+    virtual uint64 getTimeMs() = 0;
   };
 
-  class Platform : public IPlatform, public SystemModule
+  class Platform : /*public IPlatform,*/ public SystemModule
   {
   public:
     Platform();
@@ -44,7 +44,7 @@ namespace FlightOS
     void* getDeviceContext();
     void* getWindow();
 
-    uint64 getPlatformTimeMs();
+    uint64 getTimeMs();
 
     void CreateFilePath( const std::string& path );
 

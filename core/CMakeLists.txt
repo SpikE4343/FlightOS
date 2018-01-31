@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 2.8)
 
-add_definitions("-std=c++11")
+#add_definitions("-std=c++11")
 
 include_directories (
   "${PROJECT_SOURCE_DIR}/core/src"
@@ -8,6 +8,28 @@ include_directories (
   )
 
 message(${CMAKE_CURRENT_SOURCE_DIR})
+
+set( core_headers 
+  src/Application.h
+  src/Asset.h
+  src/AssetManager.h
+  src/Config.h
+  src/DeviceManager.h
+  src/Hardware.h
+  src/Input.h
+  src/Log.h
+  src/MemoryBuffer.h
+  src/ModuleManager.h
+  src/Platform.h
+  src/Profiler.h
+  src/System.h
+  src/SystemModule.h
+  src/Task.h
+  src/TaskManager.h
+  src/TaskQueue.h
+  src/Types.h
+  src/Util.h
+)
 
 set( core_sources 
   src/Application.cpp
