@@ -1,10 +1,10 @@
 cmake_minimum_required( VERSION 2.8)
 
-#add_definitions("-std=c++11")
+add_definitions("-std=c++14")
 
 include_directories (
-  "${PROJECT_SOURCE_DIR}/core/src"
-  "${PROJECT_SOURCE_DIR}/external"
+  "${FOS_LIBRARIES_SOURCE_DIR}/core/src"
+  "${FOS_LIBRARIES_SOURCE_DIR}/external"
   )
 
 message(${CMAKE_CURRENT_SOURCE_DIR})

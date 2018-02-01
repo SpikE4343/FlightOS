@@ -69,7 +69,7 @@ namespace Shiny {
 	typedef __int64				int64_t;
 	typedef unsigned __int64	uint64_t;
 
-#elif defined(__CYGWIN__)
+#elif SHINY_PLATFORM == SHINY_PLATFORM_POSIX
 	typedef u_int32_t			uint32_t;
 	typedef u_int64_t			uint64_t;
 #endif

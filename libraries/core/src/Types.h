@@ -36,7 +36,10 @@ typedef unsigned long long uint64;
 #define FlightOS_LittleEndian
 #else
 
-#error unsupported platform
+typedef int64_t   int64;
+typedef u_int64_t uint64;
+
+//#error unsupported platform
 #endif
 
 typedef uint32 ASSETID;

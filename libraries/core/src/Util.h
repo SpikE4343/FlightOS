@@ -94,7 +94,7 @@ namespace FlightOS
     }
 
     template< class Obj, Ret(Obj::*MethodPtr)(Arg1) >
-    void add(Obj*obj)
+    void add(Obj* obj)
     {
       Callback cb = Callback::Method< Obj, MethodPtr >(obj);
 
