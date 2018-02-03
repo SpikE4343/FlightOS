@@ -7,4 +7,5 @@ add_subdirectory(core)
 add_subdirectory(external)
 
 #TODO: create platform target settings
-add_subdirectory(platform/win64) 
+add_subdirectory(platform/win64)
+add_subdirectory(flight) 
